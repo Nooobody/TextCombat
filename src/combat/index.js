@@ -4,10 +4,11 @@ import {
   partyIsDead,
   monsterIsHit,
   monsterDead,
-  newLog
+  newLog,
+  newGold
 } from '../actions';
 
-export default function combatTurn(turn, players, monsters, dispatch) {
+export default function combatTurn(turn, players, monsters, weapons, dispatch) {
 
   // First check if it's a player.
   let character = players.find(ply => ply.id === turn);
@@ -25,6 +26,9 @@ export default function combatTurn(turn, players, monsters, dispatch) {
   }
 
   if (type === "player") {
+    // Set the weapon incase it has been upgraded.
+    character.setWeapon(weapons[character.class]);
+
     let alive = monsters.filter(ply => ply.hp > 0);
 
     if (alive.length > 0) {
@@ -35,6 +39,7 @@ export default function combatTurn(turn, players, monsters, dispatch) {
 
       if (target.hp <= 0) {
         dispatch(monsterDead());
+        dispatch(newGold(target.gold));
         dispatch(newLog(`${target.name} is dead!`, "monsterDead"))
       }
     }

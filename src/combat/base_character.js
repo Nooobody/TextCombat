@@ -1,4 +1,3 @@
-import { addRng } from '../util';
 
 let GUID = 1;
 export default class Character {
@@ -12,8 +11,6 @@ export default class Character {
     this.id = GUID;
     this.type = "Character";
     GUID += 1;
-
-    this.init();
   }
 
   getStatus() {
@@ -49,8 +46,5 @@ export default class Character {
 
   hit() {
     return this.damage;
-  }
-
-  init() {
   }
 }

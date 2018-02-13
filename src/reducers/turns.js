@@ -6,26 +6,26 @@ function combatTurns(characters, speedList) {
   let charArray = characters.slice(0);
   let speeds = speedList.slice(0);
   if (speedList.length === 0) {
-    charArray = shuffleArray(charArray);
-    speeds = characters.map(spd => 0);
+    shuffleArray(charArray);
+    speeds = charArray.map(spd => 0);
   }
 
-  if (characters.length === 0) {
+  if (charArray.length === 0) {
     return {turns: [], speeds: []};
   }
 
   let turns = [];
   let i = 0;
   while (turns.length < 10) {
-    speeds[i] += characters[i].speed;
+    speeds[i] += charArray[i].speed;
 
     if (speeds[i] > turnThreshold) {
       speeds[i] -= turnThreshold;
-      turns.push(characters[i].id);
+      turns.push(charArray[i].id);
     }
 
     i += 1;
-    if (i >= characters.length) {
+    if (i >= charArray.length) {
       i = 0;
     }
   }

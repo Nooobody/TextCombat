@@ -9,7 +9,13 @@ const initialState = {
   turns: [],
   speedList: [],
   combat_log: [],
-  monstersBeaten: 0
+  monstersBeaten: 0,
+  gold: 0,
+  tick: 0,
+  weapons: {
+    warrior: 0,
+    ranger: 0
+  }
 }
 
 export default function gameApp(state=initialState, action) {
@@ -24,17 +30,43 @@ export default function gameApp(state=initialState, action) {
       });
     case "MONSTER_DEAD":
       return Object.assign({}, state, {
-        monsters: state.monsters.filter(mon => mon.hp > 0),
+        //monsters: state.monsters.filter(mon => mon.hp > 0),
         monstersBeaten: state.monstersBeaten + 1
+      });
+    case "GOLD_CHANGED":
+      return Object.assign({}, state, {
+        gold: state.gold + action.gold
+      });
+    case "WEAPON_UPGRADED":
+      return Object.assign({}, state, {
+        weapons: Object.assign({}, state.weapons, {
+          [action.player]: state.weapons[action.player] + 1
+        })
       });
     case "NEW_MONSTERS":
       return Object.assign({}, state, {
-        monsters: spawn(state.monsters, action),
-        speedList: []
+        monsters: spawn(state.monsters, state.tick, action),
+        speedList: [],
+        players: state.players.filter(ply => ply.hp > 0),
+        tick: state.tick + 1,
+        turns: []
       });
     case "NEW_PARTY":
       return Object.assign({}, state, {
-        players: spawn(state.players, action),
+        players: spawn(state.players, state.tick, action),
+        speedList: [],
+        gold: 0,
+        monstersBeaten: 0,
+        tick: 0,
+        turns: [],
+        weapons: {
+          warrior: 0,
+          ranger: 0
+        }
+      });
+    case "NEW_PLAYER":
+      return Object.assign({}, state, {
+        players: spawn(state.players, state.tick, action),
         speedList: []
       });
     case "NEXT_TURN":

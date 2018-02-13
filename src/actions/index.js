@@ -6,6 +6,13 @@ export const newParty = amount => {
   };
 }
 
+export const newPlayer = type => {
+  return {
+    type: "NEW_PLAYER",
+    player: type
+  }
+}
+
 export const newMonsters = amount => {
   return {
     type: "NEW_MONSTERS",
@@ -27,6 +34,20 @@ export const monsterIsHit = (mon, dmg) => {
     dmg: dmg,
     id: mon
   };
+}
+
+export const newGold = (gold) => {
+  return {
+    type: "GOLD_CHANGED",
+    gold: gold
+  }
+}
+
+export const upgradeWeapon = (player) => {
+  return {
+    type: "WEAPON_UPGRADED",
+    player
+  }
 }
 
 export const monsterDead = () => {
