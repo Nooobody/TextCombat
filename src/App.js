@@ -26,10 +26,10 @@ class App extends Component {
 
     store.dispatch(newTurns());
 
-    console.log(store.getState());
-
     this._timer = setInterval(() => {
       let state = store.getState();
+      console.log(state);
+      
       let turn = state.turns[0];
       store.dispatch(nextTurn());
       combatTurn(turn, state.players, state.monsters, store.dispatch);
@@ -58,9 +58,15 @@ class App extends Component {
     return (
       <div className="container mt-3">
         <div className="row">
-          <Combat></Combat>
-          <Party></Party>
-          <Monsters></Monsters>
+          <div className="col-6">
+            <Combat></Combat>
+          </div>
+          <div className="col-6">
+            <div className="row">
+              <Party></Party>
+              <Monsters></Monsters>
+            </div>
+          </div>
         </div>
       </div>
     );

@@ -2,7 +2,8 @@ import Character from '../../base_character';
 import { addRng } from '../../../util';
 
 export default class Player extends Character {
-  init() {
+  constructor() {
+    super();
     this.type = "Player";
     this.name = "Player";
     this.data = {
@@ -19,7 +20,9 @@ export default class Player extends Character {
       rngFactor: 2,
       stat: "dexterity"
     };
+  }
 
+  spawn() {
     this.hp = this.data.endurance * 6;
     this.maxhp = this.hp;
   }

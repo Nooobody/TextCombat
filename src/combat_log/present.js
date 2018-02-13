@@ -1,11 +1,18 @@
 import React from 'react';
 
+const classes = {
+  playerHit: "text-warning",
+  playerDead: "text-danger",
+  partyDead: "text-danger",
+  monsterHit: "text-success",
+  monsterDead: "text-success"
+}
+
 const CombatLog = (combat_log=[]) => {
-  console.log(combat_log);
   let log = combat_log.combat_log.slice(0).reverse();
-  return (<div className="col-6">
+  return (<div className="">
     <h3>Combat Log</h3>
-    {log.map((msg, index) => <p key={index}>{msg.msg}</p>)}
+    {log.map((msg, index) => <p key={index} className={classes[msg.type]}>{msg.msg}</p>)}
   </div>)
 }
 

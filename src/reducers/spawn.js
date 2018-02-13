@@ -15,5 +15,9 @@ export default function spawn(state=[], action) {
     }
   }
 
+  for (let char of array) {
+    char.spawn();
+  }
+
   return array;
 }

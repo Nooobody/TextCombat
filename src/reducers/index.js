@@ -29,11 +29,13 @@ export default function gameApp(state=initialState, action) {
       });
     case "NEW_MONSTERS":
       return Object.assign({}, state, {
-        monsters: spawn(state.monsters, action)
+        monsters: spawn(state.monsters, action),
+        speedList: []
       });
     case "NEW_PARTY":
       return Object.assign({}, state, {
-        players: spawn(state.players, action)
+        players: spawn(state.players, action),
+        speedList: []
       });
     case "NEXT_TURN":
       return Object.assign({}, state, {
