@@ -36,6 +36,12 @@ export const monsterIsHit = (mon, dmg) => {
   };
 }
 
+export const regen = () => {
+  return {
+    type: "PARTY_REGEN"
+  };
+}
+
 export const newGold = (gold) => {
   return {
     type: "GOLD_CHANGED",
@@ -53,6 +59,13 @@ export const hoverPlayer = (ply) => {
 export const hoverOut = () => {
   return {
     type: "HOVER_OUT"
+  };
+}
+
+export const levelUp = (player) => {
+  return {
+    type: "PLAYER_LEVELED",
+    player
   };
 }
 

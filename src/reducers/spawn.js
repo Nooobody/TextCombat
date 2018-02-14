@@ -1,6 +1,6 @@
 import {spawnPlayer, spawnMonster} from '../combat/spawn'
 
-export default function spawn(state=[], tick, action) {
+export default function spawn(state=[], tick, action, weapons={}) {
   let array = state.slice(0);
 
   if (action.type === "NEW_MONSTERS") {
@@ -31,7 +31,7 @@ export default function spawn(state=[], tick, action) {
   }
   else if (action.type === "NEW_PLAYER") {
     let ply = spawnPlayer(action.player);
-    ply.spawn();
+    ply.spawn(weapons);
     array.push(ply);
   }
 

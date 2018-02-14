@@ -34,6 +34,12 @@ let stats = {
   speed: 1
 };
 
+let leveling = {
+  strength: 1,
+  endurance: 1,
+  speed: 0.02
+}
+
 export default class Warrior extends Player {
   constructor() {
     super();
@@ -51,6 +57,15 @@ export default class Warrior extends Player {
 
   static getStats() {
     return stats;
+  }
+
+  spawn(weapons={}) {
+    this._spawn();
+    this.setWeapon(weapons[this.class] ? weapons[this.class] : 0);
+  }
+
+  levelUp() {
+    this._levelUp(leveling);
   }
 
   setWeapon(index) {

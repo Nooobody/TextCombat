@@ -13,7 +13,8 @@ import {
   nextTurn,
   newTurns,
   newMonsters,
-  newLog
+  newLog,
+  regen
 } from './actions';
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
       if (state.monsters.every(mon => mon.hp <= 0) || state.players.every(ply => ply.hp <= 0)) {
         if (state.monsters.every(mon => mon.hp <= 0)) {
           store.dispatch(newLog("The party is victorious, for now."));
+          store.dispatch(regen());
           store.dispatch(newMonsters());
           store.dispatch(newLog("A new group of monsters has appeared!"));
         }

@@ -34,6 +34,12 @@ let stats = {
   speed: 1.2
 };
 
+let leveling = {
+  dexterity: 1,
+  endurance: 0.2,
+  speed: 0.05
+}
+
 export default class Ranger extends Player {
   constructor() {
     super();
@@ -41,6 +47,7 @@ export default class Ranger extends Player {
     this.name = "Ranger";
     this.data.dexterity = 3;
     this.data.endurance = 2;
+    this.data.speed = 1.2;
     this.speed = 1.2;
 
     this.weapon = weapons[0];
@@ -52,6 +59,15 @@ export default class Ranger extends Player {
 
   static getStats() {
     return stats;
+  }
+
+  spawn(weapons={}) {
+    this._spawn();
+    this.setWeapon(weapons[this.class] ? weapons[this.class] : 0);
+  }
+
+  levelUp() {
+    this._levelUp(leveling);
   }
 
   setWeapon(index) {

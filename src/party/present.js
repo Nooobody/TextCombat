@@ -14,7 +14,7 @@ const HoverTooltip = ({ply}) => {
     <div className="custom-tooltip">
       <div className="custom-tooltip-inner">
         <h3>{ply.name}</h3>
-        <div>Max Health: {ply.data["endurance"] * 6}</div>
+        <div>Max Health: {ply.maxhp}</div>
         {keys.map(key => (
           <div>{key.replace(/\b\w/g, l => l.toUpperCase())}: {ply.data[key]}</div>
         ))}
@@ -34,13 +34,13 @@ const _Party = ({players, hovered, hoverPlayer, hoverOut}) => {
     <div className="row">
       {
         players.map((ply, index) => (
-          <div key={index} className="col-6 mb-3" onMouseOver={() => hoverPlayer(ply.id)} onMouseOut={() => hoverOut()}>
+          <div key={index} style={{cursor: "pointer"}} className="col-6 mb-3" onMouseOver={() => hoverPlayer(ply.id)} onMouseOut={() => hoverOut()}>
             {
               hovered === ply.id ?
               <HoverTooltip ply={ply}></HoverTooltip> :
               null
             }
-            <div>{ply.name}</div>
+            <div>Lv{ply.level} {ply.name}</div>
             <div className="progress">
               <div
                 className={"progress-bar bg-" + status[Math.floor(((ply.hp / ply.maxhp) * 2))]}

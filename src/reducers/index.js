@@ -2,6 +2,8 @@
 import combat from './combat';
 import spawn from './spawn';
 import calculateTurns from './turns';
+import levelUp from './level';
+import upgradeWeapon from './weapon';
 
 const initialState = {
   players: [],
@@ -40,10 +42,19 @@ export default function gameApp(state=initialState, action) {
       });
     case "WEAPON_UPGRADED":
       return Object.assign({}, state, {
+        players: upgradeWeapon(state.players, action.player, state.weapons),
         weapons: Object.assign({}, state.weapons, {
           [action.player]: state.weapons[action.player] + 1
         })
       });
+    case "PLAYER_LEVELED":
+      return Object.assign({}, state, {
+        players: levelUp(state.players, action.player)
+      });
+    case "PARTY_REGEN":
+      return Object.assign({}, state, {
+        players: state.players.map(ply => {ply.regen(); return ply})
+      })
     case "NEW_MONSTERS":
       return Object.assign({}, state, {
         monsters: spawn(state.monsters, state.tick, action),
@@ -75,7 +86,7 @@ export default function gameApp(state=initialState, action) {
       });
     case "NEW_PLAYER":
       return Object.assign({}, state, {
-        players: spawn(state.players, state.tick, action)
+        players: spawn(state.players, state.tick, action, state.weapons)
       });
     case "NEXT_TURN":
       return Object.assign({}, state, {
