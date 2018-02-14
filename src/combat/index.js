@@ -35,7 +35,7 @@ export default function combatTurn(turn, players, monsters, weapons, dispatch) {
       let target = alive[Math.floor(Math.random() * alive.length)];
       let dmg = character.hit();
       dispatch(monsterIsHit(target.id, dmg));
-      dispatch(newLog(`${target.name} was hit for ${dmg}`, "monsterHit"))
+      dispatch(newLog(`${character.name} hits ${target.name} for ${dmg}`, "monsterHit"))
 
       if (target.hp <= 0) {
         dispatch(monsterDead());
@@ -51,7 +51,7 @@ export default function combatTurn(turn, players, monsters, weapons, dispatch) {
       let target = alive[Math.floor(Math.random() * alive.length)];
       let dmg = character.hit();
       dispatch(playerIsHit(target.id, dmg));
-      dispatch(newLog(`${target.name} was hit for ${dmg}`, "playerHit"));
+      dispatch(newLog(`${character.name} hits ${target.name} for ${dmg}`, "playerHit"));
 
       if (target.hp <= 0) {
         dispatch(newLog(`${target.name} is dead!`, "playerDead"));

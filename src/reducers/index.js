@@ -67,7 +67,8 @@ export default function gameApp(state=initialState, action) {
     case "NEW_PLAYER":
       return Object.assign({}, state, {
         players: spawn(state.players, state.tick, action),
-        speedList: []
+        speedList: [],
+        turns: []
       });
     case "NEXT_TURN":
       return Object.assign({}, state, {

@@ -36,6 +36,11 @@ export default class Character {
 
   takeHit(dmg) {
     this.hp -= dmg;
+
+    if (this.hp < 0) {
+      this.hp = 0;
+    }
+
     this.status = this.getStatus();
   }
 
