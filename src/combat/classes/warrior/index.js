@@ -35,7 +35,7 @@ let stats = {
 
 let leveling = {
   strength: 1,
-  endurance: 1,
+  endurance: 0.5,
   speed: 0.02
 }
 

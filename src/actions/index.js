@@ -49,6 +49,13 @@ export const addKill = (player) => {
   };
 }
 
+export const addExp = (exp) => {
+  return {
+    type: "ADD_EXPERIENCE",
+    exp
+  }
+}
+
 export const newGold = (gold) => {
   return {
     type: "GOLD_CHANGED",

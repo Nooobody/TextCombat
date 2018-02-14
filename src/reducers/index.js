@@ -46,6 +46,10 @@ export default function gameApp(state=initialState, action) {
           [action.player]: state.weapons[action.player] + 1
         })
       });
+    case "ADD_EXPERIENCE":
+      return Object.assign({}, state, {
+        players: state.players.map(ply => {ply.addExp(action.exp); return ply})
+      });
     case "PLAYER_KILLED":
       return Object.assign({}, state, {
         players: state.players.map(ply => {if (ply.id === action.player) {ply.addKill()} return ply})

@@ -10,6 +10,7 @@ export default class Monster extends Character {
     this.damage = Math.floor(Math.random() * 10) + 4;
     this.speed = (Math.floor(Math.random() * 10) + 1) / 5;
     this.gold = Math.floor(Math.random() * 10) + 1;
+    this.exp = 1;
   }
 
   spawn() {

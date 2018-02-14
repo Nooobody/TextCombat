@@ -6,7 +6,8 @@ import {
   monsterDead,
   newLog,
   newGold,
-  addKill
+  addKill,
+  addExp
 } from '../actions';
 
 export default function combatTurn(turn, players, monsters, weapons, dispatch) {
@@ -41,6 +42,10 @@ export default function combatTurn(turn, players, monsters, weapons, dispatch) {
       if (target.hp <= 0) {
         dispatch(addKill(character.id));
         dispatch(monsterDead());
+
+        let exp = target.exp / players.filter(ply => ply.hp > 0).length;
+        dispatch(addExp(exp));
+
         dispatch(newGold(target.gold));
         dispatch(newLog(`${target.name} is dead!`, "monsterDead"))
       }

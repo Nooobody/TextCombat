@@ -8,5 +8,6 @@ export default class Overlord extends Monster {
     this.damage = Math.floor(Math.random() * 10) + 10;
     this.speed = (Math.floor(Math.random() * 10) + 1) / 5;
     this.gold = Math.floor(Math.random() * 15) + 10;
+    this.exp = 12;
   }
 }

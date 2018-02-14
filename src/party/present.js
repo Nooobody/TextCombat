@@ -1,6 +1,8 @@
 import React from 'react';
 import "./style.css";
 
+import { levelingCurve } from '../combat/classes/base';
+
 const status = {
   2: "success",
   1: "warning",
@@ -14,10 +16,14 @@ const HoverTooltip = ({ply}) => {
     <div className="custom-tooltip">
       <div className="custom-tooltip-inner">
         <h3>{ply.name}</h3>
+        XP
+        <div className="progress mb-3">
+          <div className="progress-bar bg-primary" role="progressbar" style={{width: Math.floor((ply.exp / levelingCurve[ply.level - 1]) * 100)  + "%"}}></div>
+        </div>
         <div>Max Health: {ply.maxhp}</div>
         <div>Kills: {ply.kills}</div>
         {keys.map(key => (
-          <div>{key.replace(/\b\w/g, l => l.toUpperCase())}: {ply.data[key]}</div>
+          <div key={key}>{key.replace(/\b\w/g, l => l.toUpperCase())}: {ply.data[key]}</div>
         ))}
         <hr/>
         <div>Weapon</div>

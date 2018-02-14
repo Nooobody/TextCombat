@@ -1,7 +1,7 @@
 import Character from '../../base_character';
 import { addRng } from '../../../util';
 
-let levelingCurve = [
+export const levelingCurve = [
   1,
   1,
   2,
@@ -20,7 +20,19 @@ let levelingCurve = [
   987,
   1597,
   2584,
-  4181
+  4181,
+  6765,
+  10946,
+  17711,
+  28657,
+  46368,
+  75025,
+  121393,
+  196418,
+  317811,
+  514229,
+  832040,
+  1346269
 ]
 
 export default class Player extends Character {
@@ -53,18 +65,18 @@ export default class Player extends Character {
     this.setWeapon(weaponLevels[this.class] ? weaponLevels[this.class] : 0)
   }
 
-  addExp() {
-    this.exp += 1;
+  addExp(exp) {
+    this.exp += exp;
 
-    if (levelingCurve[this.level - 1] === this.exp) {
+    if (this.exp >= levelingCurve[this.level - 1]) {
+      this.exp -= levelingCurve[this.level - 1];
       this.levelUp();
-      this.exp = 0;
+      this.addExp(0);  // To check if we can level up more.
     }
   }
 
   addKill() {
     this.kills += 1;
-    this.addExp();
   }
 
   regen() {
