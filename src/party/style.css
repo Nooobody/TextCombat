@@ -1,0 +1,15 @@
+
+.custom-tooltip {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  background-color: #fff0c9;
+  z-index: 1000;
+  padding: 10px;
+}
+
+.custom-tooltip-inner {
+  margin: 10px
+}

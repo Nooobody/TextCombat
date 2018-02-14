@@ -12,6 +12,7 @@ const initialState = {
   monstersBeaten: 0,
   gold: 0,
   tick: 0,
+  hovered: -1,
   weapons: {
     warrior: 0,
     ranger: 0
@@ -64,11 +65,17 @@ export default function gameApp(state=initialState, action) {
           ranger: 0
         }
       });
+    case "PLAYER_HOVERED":
+      return Object.assign({}, state, {
+        hovered: action.ply
+      });
+    case "HOVER_OUT":
+      return Object.assign({}, state, {
+        hovered: -1
+      });
     case "NEW_PLAYER":
       return Object.assign({}, state, {
-        players: spawn(state.players, state.tick, action),
-        speedList: [],
-        turns: []
+        players: spawn(state.players, state.tick, action)
       });
     case "NEXT_TURN":
       return Object.assign({}, state, {

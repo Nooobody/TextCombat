@@ -26,6 +26,14 @@ const weapons = [{
   stat: "strength"
 }];
 
+let stats = {
+  strength: 4,
+  dexterity: 1,
+  endurance: 6,
+  intelligence: 1,
+  speed: 1
+};
+
 export default class Warrior extends Player {
   constructor() {
     super();
@@ -39,6 +47,10 @@ export default class Warrior extends Player {
 
   static getWeapon(index) {
     return weapons[index];
+  }
+
+  static getStats() {
+    return stats;
   }
 
   setWeapon(index) {

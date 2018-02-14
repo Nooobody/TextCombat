@@ -43,6 +43,19 @@ export const newGold = (gold) => {
   }
 }
 
+export const hoverPlayer = (ply) => {
+  return {
+    type: "PLAYER_HOVERED",
+    ply: ply
+  };
+}
+
+export const hoverOut = () => {
+  return {
+    type: "HOVER_OUT"
+  };
+}
+
 export const upgradeWeapon = (player) => {
   return {
     type: "WEAPON_UPGRADED",

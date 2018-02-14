@@ -22,7 +22,7 @@ class App extends Component {
 
     store.dispatch(newParty(6));
     store.dispatch(newMonsters());
-    store.dispatch(newLog("A new monster has appeared!"));
+    store.dispatch(newLog("A group of monsters has appeared!"));
 
     store.dispatch(newTurns());
 
@@ -32,13 +32,14 @@ class App extends Component {
 
       let turn = state.turns[0];
       store.dispatch(nextTurn());
+
       combatTurn(turn, state.players, state.monsters, state.weapons, store.dispatch);
 
       if (state.monsters.every(mon => mon.hp <= 0) || state.players.every(ply => ply.hp <= 0)) {
         if (state.monsters.every(mon => mon.hp <= 0)) {
           store.dispatch(newLog("The party is victorious, for now."));
           store.dispatch(newMonsters());
-          store.dispatch(newLog("A new monster appears!"));
+          store.dispatch(newLog("A new group of monsters has appeared!"));
         }
         else {
           store.dispatch(newParty(6));

@@ -9,6 +9,9 @@ function combatTurns(characters, speedList) {
     shuffleArray(charArray);
     speeds = charArray.map(spd => 0);
   }
+  else if (speedList.length !== charArray.length) {
+    speeds = speeds.fill(0, speeds.length, charArray.length - 1);
+  }
 
   if (charArray.length === 0) {
     return {turns: [], speeds: []};

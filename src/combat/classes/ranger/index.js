@@ -26,6 +26,14 @@ const weapons = [{
   stat: "dexterity"
 }]
 
+let stats = {
+  strength: 1,
+  dexterity: 3,
+  endurance: 2,
+  intelligence: 1,
+  speed: 1.2
+};
+
 export default class Ranger extends Player {
   constructor() {
     super();
@@ -40,6 +48,10 @@ export default class Ranger extends Player {
 
   static getWeapon(index) {
     return weapons[index];
+  }
+
+  static getStats() {
+    return stats;
   }
 
   setWeapon(index) {
