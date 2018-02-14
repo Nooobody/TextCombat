@@ -9,19 +9,21 @@ const status = {
 const _Monsters = ({monsters}) => {
   return (<div className="col-12">
     <h3>Monsters</h3>
-    {
-      monsters.map((mon, index) => (
-        <div key={index} className="mb-3">
-          <div>{mon.name}</div>
-          <div className="progress">
-            <div
-              className={"progress-bar bg-" + status[Math.floor(((mon.hp / mon.maxhp) * 2))]}
-              role="progressbar"
-              style={{width: Math.floor((mon.hp / mon.maxhp) * 100) + "%"}}></div>
-          </div>
-        </div>
-      ))
-    }
+    <div className="row">
+      {
+        monsters.map((mon, index) => (
+          <div key={index} className="col-6 mb-3">
+            <div>{mon.name}</div>
+            <div className="progress">
+              <div
+                className={"progress-bar bg-" + status[Math.floor(((mon.hp / mon.maxhp) * 2))]}
+                role="progressbar"
+                style={{width: Math.floor((mon.hp / mon.maxhp) * 100) + "%"}}></div>
+              </div>
+            </div>
+          ))
+        }
+    </div>
   </div>)
 }
 
