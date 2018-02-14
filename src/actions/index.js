@@ -42,6 +42,13 @@ export const regen = () => {
   };
 }
 
+export const addKill = (player) => {
+  return {
+    type: "PLAYER_KILLED",
+    player
+  };
+}
+
 export const newGold = (gold) => {
   return {
     type: "GOLD_CHANGED",
@@ -59,13 +66,6 @@ export const hoverPlayer = (ply) => {
 export const hoverOut = () => {
   return {
     type: "HOVER_OUT"
-  };
-}
-
-export const levelUp = (player) => {
-  return {
-    type: "PLAYER_LEVELED",
-    player
   };
 }
 

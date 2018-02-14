@@ -1,5 +1,4 @@
 import Player from '../base';
-import { addRng } from '../../../util';
 
 const weapons = [{
   name: "Sword",
@@ -47,6 +46,8 @@ export default class Warrior extends Player {
     this.name = "Warrior";
     this.data.strength = 4;
     this.data.endurance = 6;
+    this.levelingTable = leveling;
+    this.weaponsTable = weapons;
 
     this.weapon = weapons[0];
   }
@@ -57,18 +58,5 @@ export default class Warrior extends Player {
 
   static getStats() {
     return stats;
-  }
-
-  spawn(weapons={}) {
-    this._spawn();
-    this.setWeapon(weapons[this.class] ? weapons[this.class] : 0);
-  }
-
-  levelUp() {
-    this._levelUp(leveling);
-  }
-
-  setWeapon(index) {
-    this.weapon = weapons[index];
   }
 }

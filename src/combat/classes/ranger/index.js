@@ -1,5 +1,4 @@
 import Player from '../base';
-import { addRng } from '../../../util';
 
 const weapons = [{
   name: "Bow",
@@ -49,6 +48,8 @@ export default class Ranger extends Player {
     this.data.endurance = 2;
     this.data.speed = 1.2;
     this.speed = 1.2;
+    this.levelingTable = leveling;
+    this.weaponsTable = weapons;
 
     this.weapon = weapons[0];
   }
@@ -59,18 +60,5 @@ export default class Ranger extends Player {
 
   static getStats() {
     return stats;
-  }
-
-  spawn(weapons={}) {
-    this._spawn();
-    this.setWeapon(weapons[this.class] ? weapons[this.class] : 0);
-  }
-
-  levelUp() {
-    this._levelUp(leveling);
-  }
-
-  setWeapon(index) {
-    this.weapon = weapons[index];
   }
 }

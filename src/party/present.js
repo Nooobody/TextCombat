@@ -15,6 +15,7 @@ const HoverTooltip = ({ply}) => {
       <div className="custom-tooltip-inner">
         <h3>{ply.name}</h3>
         <div>Max Health: {ply.maxhp}</div>
+        <div>Kills: {ply.kills}</div>
         {keys.map(key => (
           <div>{key.replace(/\b\w/g, l => l.toUpperCase())}: {ply.data[key]}</div>
         ))}

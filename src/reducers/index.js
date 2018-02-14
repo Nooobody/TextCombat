@@ -2,7 +2,6 @@
 import combat from './combat';
 import spawn from './spawn';
 import calculateTurns from './turns';
-import levelUp from './level';
 import upgradeWeapon from './weapon';
 
 const initialState = {
@@ -47,9 +46,9 @@ export default function gameApp(state=initialState, action) {
           [action.player]: state.weapons[action.player] + 1
         })
       });
-    case "PLAYER_LEVELED":
+    case "PLAYER_KILLED":
       return Object.assign({}, state, {
-        players: levelUp(state.players, action.player)
+        players: state.players.map(ply => {if (ply.id === action.player) {ply.addKill()} return ply})
       });
     case "PARTY_REGEN":
       return Object.assign({}, state, {
