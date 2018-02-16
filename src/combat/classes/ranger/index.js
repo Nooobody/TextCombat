@@ -30,7 +30,7 @@ let stats = {
   dexterity: 3,
   endurance: 2,
   intelligence: 1,
-  speed: 1.2
+  speed: 1.1
 };
 
 let leveling = {
@@ -46,8 +46,8 @@ export default class Ranger extends Player {
     this.name = "Ranger";
     this.data.dexterity = 3;
     this.data.endurance = 2;
-    this.data.speed = 1.2;
-    this.speed = 1.2;
+    this.data.speed = 1.1;
+    this.speed = 1.1;
     this.levelingTable = leveling;
     this.weaponsTable = weapons;
 
