@@ -35,8 +35,7 @@ let stats = {
 
 let leveling = {
   dexterity: 1,
-  endurance: 0.2,
-  speed: 0.05
+  endurance: 0.2
 }
 
 export default class Ranger extends Player {

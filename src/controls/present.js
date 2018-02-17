@@ -3,15 +3,36 @@ import PropTypes from 'prop-types';
 import Warrior from '../combat/classes/warrior';
 import Ranger from '../combat/classes/ranger';
 
+const totalCosts= [
+  0,
+  20,
+  60,
+  180
+]
+
 const Panel = (props) => {
   let baseClass = "mb-3 btn btn-";
 
-  let warriorClass, rangerClass, buyClass;
-  if (props.gold >= 10) {
-    buyClass = baseClass + "success";
+  let warriorClass, rangerClass, warriorBuyClass, rangerBuyClass;
+
+  let warriorWeaponLevel = props.weapons.warrior;
+  let rangerWeaponLevel = props.weapons.ranger;
+
+  let warriorCost = 10 + totalCosts[warriorWeaponLevel] * 0.5;
+  let rangerCost = 10 + totalCosts[rangerWeaponLevel] * 0.5;
+
+  if (props.gold >= warriorCost) {
+    warriorBuyClass = baseClass + "success";
   }
   else {
-    buyClass = baseClass + "danger";
+    warriorBuyClass = baseClass + "danger";
+  }
+
+  if (props.gold >= rangerCost) {
+    rangerBuyClass = baseClass + "success";
+  }
+  else {
+    rangerBuyClass = baseClass + "danger";
   }
 
   let warriorWeaponCost = Warrior.getWeapon(props.weapons.warrior).costToUpgrade;
@@ -40,8 +61,8 @@ const Panel = (props) => {
   return (
     <div className="col-12 mb-3">
       <h3>Controls</h3>
-      <div className={buyClass} onClick={() => {if (props.gold >= 10) {props.newPlayer("warrior")}}}>New Warrior (10 gold)</div>
-      <div className={buyClass} onClick={() => {if (props.gold >= 10) {props.newPlayer("ranger")}}}>New Ranger (10 gold)</div>
+      <div className={warriorBuyClass} onClick={() => {if (props.gold >= warriorCost) {props.newPlayer("warrior", warriorCost)}}}>New Warrior ({warriorCost} gold)</div>
+      <div className={rangerBuyClass} onClick={() => {if (props.gold >= rangerCost) {props.newPlayer("ranger", rangerCost)}}}>New Ranger ({rangerCost} gold)</div>
       {warriorWeaponCost ?
        <div className={warriorClass} onClick={() => {if (props.gold >= warriorWeaponCost) {props.upgradeWeapon("warrior", warriorWeaponCost)}}}>Upgrade Warrior weapon ({warriorWeaponCost} gold)</div> :
        <div className={warriorClass}>Warrior weapon is at max level.</div>}

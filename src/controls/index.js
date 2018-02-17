@@ -12,8 +12,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    newPlayer: (type) => {
-      dispatch(newGold(-10));
+    newPlayer: (type, cost) => {
+      dispatch(newGold(-cost));
       dispatch(newPlayer(type));
     },
     upgradeWeapon: (player, cost) => {
