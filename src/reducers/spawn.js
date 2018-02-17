@@ -3,10 +3,10 @@ import {spawnPlayer, spawnMonster} from '../combat/spawn'
 const monsterAmounts = {
   0: {min: 1, max: 3},
   1: {min: 2, max: 4},
-  2: {min: 3, max: 5},
-  3: {min: 4, max: 6},
-  4: {min: 5, max: 8},
-  5: {min: 10, max: 20},
+  2: {min: 5, max: 10},
+  3: {min: 10, max: 20},
+  4: {min: 15, max: 30},
+  5: {min: 30, max: 50},
 }
 
 export default function spawn(state=[], tick, action, weapons={}) {
